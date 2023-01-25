@@ -163,7 +163,7 @@ def to_pygame(coords, height):
 def to_2D(vertex):
     x = vertex[0] * (focal_length/(focal_length+vertex[2]))
     y = vertex[1] * (focal_length/(focal_length+vertex[2]))
-    return((to_pygame(x,350),to_pygame(y,350)))
+    return((to_pygame(x,350),to_pygame(y,250)))
 
 def rotateX(coords,matrix):
     result=[[0,0,0]for x,y,z in VERTEX_ARRAY]
