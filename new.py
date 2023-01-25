@@ -13,16 +13,34 @@ screen = pygame.display.set_mode((width, height))
 font = pygame.font.SysFont('Arial', 40)
 
 objects = []
-VERTEX_ARRAY=[
-(100,0,-100),
-(-100,0,-100),
-(-100,0,100),
-(100,0,100),
-(0,-100,0)
-]
-
-EDGES = [(0,1),(1,2),(2,3),(3,0),(4,0),(4,1),(4,2),(4,3)]
+VERTEX_ARRAY=[]
+EDGES = []
 ARRAY2D=[]
+
+li=[]
+li2=[]
+with open("D:\mesh\mesh.csv") as file:
+    data=file.readlines()
+    for i in data:
+            a=i.split(";")
+            print(a)
+            VERTEX_ARRAY.append((float(a[0]),float(a[1]),float(a[2][:-2])))
+        
+    print(VERTEX_ARRAY)
+li=[]
+with open('D:\\mesh\\file.txt') as file:
+    data=file.readline()[1:-1]
+    a=data.split(',')
+    for i in a:
+        b=i.replace("[","").replace("]","").replace(" ","")
+        li.append(int(b))
+
+for i in range(len(li)-1):
+    if li[i]!=li[i+1]:
+        EDGES.append((li[i],li[i+1]))
+print(EDGES)
+
+
 focal_length = 720
 
 class Button():
@@ -88,7 +106,6 @@ def myFunctionX():
             screen.fill((255, 255, 255))
             customButton = Button(400, 10, 120, 40, 'STOP',stop)
             customButton.process()
-            time.sleep(0.2)
             Matrix=get_Matrix('X',j)
             newCoords=[]
             coords2D=[]
@@ -116,7 +133,6 @@ def myFunctionY():
             screen.fill((255, 255, 255))
             customButton = Button(400, 10, 120, 40, 'STOP',stop)
             customButton.process()
-            time.sleep(0.2)
             Matrix=get_Matrix('Y',j)
             newCoords=[]
             coords2D=[]
